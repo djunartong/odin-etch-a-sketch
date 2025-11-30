@@ -32,10 +32,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const itemWidthPercentage = 100 / numCols;
 
     for (let i = 0; i < numRows * numCols; i++) {
-        const gridItem = document.createElement('div');
-        gridItem.classList.add('grid-item');
+        const gridItem = document.createElement("div");
+        gridItem.classList.add("grid-item", "white");
         // Set the flex-basis to ensure columns wrap correctly
         gridItem.style.flexBasis = `${itemWidthPercentage}%`; 
         container.appendChild(gridItem);
+        gridItem.addEventListener("mouseover", () => {
+            gridItem.classList.remove("white");
+            gridItem.classList.add("shade");
+            // Increment opacity safely
+            let currentOpacity = parseFloat(gridItem.style.opacity) || 0.1;
+            if (currentOpacity < 1) {
+                gridItem.style.opacity = currentOpacity + 0.1;
+            }
+        });
     }
 });

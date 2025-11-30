@@ -33,5 +33,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(255, 255, 255);
+}
+
+.grid-item.white {
+    background-color: white;
+}
+
+.grid-item.shade {
+    background-color: black;
+    opacity: 0.1;
 }
