@@ -1,0 +1,43 @@
+const GRID_CONTAINER_PX = 840;
+const GRID_BORDER_WIDTH = 0.5;
+
+const title = document.createElement("h1");
+title.textContent = "Etch-a-Sketch";
+document.body.appendChild(title);
+
+const btnContainer = document.createElement("div");
+document.body.appendChild(btnContainer);
+
+const shade = document.createElement("button");
+shade.textContent = "Shade";
+btnContainer.appendChild(shade);
+
+const random = document.createElement("button");
+random.textContent = "Randomize";
+btnContainer.appendChild(random);
+
+const clear = document.createElement("button");
+clear.textContent = "Clear";
+btnContainer.appendChild(clear);
+
+const gridContainer = document.createElement("div");
+gridContainer.classList.add("grid-container");
+document.body.appendChild(gridContainer);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector(".grid-container");
+    const numRows = 16; // Define the number of rows
+    const numCols = 16; // Define the number of columns
+
+    // Calculate the width for each column to ensure they fit evenly
+    // This example uses a percentage, ensuring each column takes an equal share
+    const itemWidthPercentage = 100 / numCols;
+
+    for (let i = 0; i < numRows * numCols; i++) {
+        const gridItem = document.createElement('div');
+        gridItem.classList.add('grid-item');
+        // Set the flex-basis to ensure columns wrap correctly
+        gridItem.style.flexBasis = `${itemWidthPercentage}%`; 
+        container.appendChild(gridItem);
+    }
+});

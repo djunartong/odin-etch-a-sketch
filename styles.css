@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 243, 228);
+}
+
+.grid-container {
+    height: 840px;
+    width: 840px;
+    border-style: solid;
+    border-color: black;
+    border-width: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.grid-item {
+    flex: 1 0 auto; /* Allows items to grow, shrink, and sets a base size */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    border: 0.5px solid #b5b5b5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+}
