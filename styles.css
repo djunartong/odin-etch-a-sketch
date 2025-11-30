@@ -9,10 +9,12 @@ body {
 }
 
 .button-container {
-    height:25px;
+    height: auto;
     width: 220px;
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    row-gap: 10px;
 }
 
 .grid-container {
