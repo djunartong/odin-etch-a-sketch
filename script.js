@@ -1,11 +1,9 @@
-const GRID_CONTAINER_PX = 840;
-const GRID_BORDER_WIDTH = 0.5;
-
 const title = document.createElement("h1");
-title.textContent = "Etch-a-Sketch";
+title.textContent = "Etch-A-Sketch";
 document.body.appendChild(title);
 
 const btnContainer = document.createElement("div");
+btnContainer.classList.add("button-container");
 document.body.appendChild(btnContainer);
 
 const shade = document.createElement("button");
