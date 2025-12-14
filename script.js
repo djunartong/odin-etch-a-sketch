@@ -7,7 +7,7 @@ btnContainer.classList.add("button-container");
 document.body.appendChild(btnContainer);
 
 const shade = document.createElement("button");
-shade.classList.add("default");
+shade.classList.add("shade");
 shade.textContent = "Shade";
 btnContainer.appendChild(shade);
 
@@ -22,6 +22,7 @@ clear.textContent = "Clear";
 btnContainer.appendChild(clear);
 
 const customize = document.createElement("button");
+customize.classList.add("customize");
 customize.textContent = "Customize";
 btnContainer.appendChild(customize);
 
@@ -30,13 +31,12 @@ gridContainer.classList.add("grid-container", "white");
 document.body.appendChild(gridContainer);
 
 document.addEventListener("DOMContentLoaded", () => {
-    const NUM_ROWS = 16; // Define the number of rows
-    const NUM_COLS = 16; // Define the number of columns
+    const SIZE = 16;
     const container = document.querySelector(".grid-container");
     const clearButton = document.querySelector(".clear");
     const rgbButton = document.querySelector(".rgb");
-    const shadeButton = document.querySelector(".default");
-    const customize = document.querySelector(".customize");
+    const shadeButton = document.querySelector(".shade");
+    const customizeButton = document.querySelector(".customize");
 
     let mode = "shade";
 
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // This example uses a percentage, ensuring each column takes an equal share
         const itemWidthPercentage = 100 / size;
 
-        for (let i = 0; i < NUM_ROWS * NUM_COLS; i++) {
+        for (let i = 0; i < size * size; i++) {
             const gridItem = document.createElement("div");
             gridItem.classList.add("grid-item", "white");
             // Set the flex-basis to ensure columns wrap correctly
@@ -75,9 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 gridItem.classList.remove("white", "shade");
                 if (mode === "shade") {
                     gridItem.classList.add("shade");
-                    let currentOpacity = parseFloat(grid.style.opacity) || 0.1;
+                    let currentOpacity = parseFloat(gridItem.style.opacity) || 0.1;
                     if (currentOpacity < 1) {
-                        grid.style.opacity = currentOpacity + 0.1;
+                        gridItem.style.opacity = currentOpacity + 0.1;
                     }
                 } else if (mode === "rgb") {
                     gridItem.style.backgroundColor = generateRandomHexColor();
@@ -88,10 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    createGrid(NUM_ROWS);
+    createGrid(SIZE);
 
-    shadeButton.addEventListener("click", () => mode === "shade");
-    shadeButton.addEventListener("click", () => mode === "rgb");
+    shadeButton.addEventListener("click", () => mode = "shade");
+    rgbButton.addEventListener("click", () => mode = "rgb");
     clearButton.addEventListener("click", () => {
         const allSquares = container.querySelectorAll(".grid-item");
         allSquares.forEach(square => {
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             square.style.opacity = "";
         });
     });
-    customize.addEventListener("click", () => {
+    customizeButton.addEventListener("click", () => {
         let userInput = prompt("Please enter a number between 0 to 100:");
         let input = parseInt(userInput);
 
